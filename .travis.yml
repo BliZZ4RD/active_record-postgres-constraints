@@ -1,7 +1,5 @@
 env:
   - BUNDLE_DISABLE_EXEC_LOAD=true # Based on https://github.com/grosser/parallel_tests/issues/649#issuecomment-487100470
-addons:
-  postgresql: "9.6"
 rvm:
   - 2.3.0
   - 2.4.0
@@ -13,6 +11,15 @@ gemfile:
   - gemfiles/rails_5.2.gemfile
   - gemfiles/rails_6.0.gemfile
 matrix:
+  include:
+    - addons:
+        postgresql: 9.6
+    - addons:
+        postgresql: 10.11
+    - addons:
+        postgresql: 11.6
+    - addons:
+        postgresql: 12.1
   exclude:
   - rvm: 2.3.0
     gemfile: gemfiles/rails_6.0.gemfile
